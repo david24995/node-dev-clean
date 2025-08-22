@@ -1,17 +1,9 @@
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+import { UserController } from './user.controller';
 
 const router = Router();
+const userController = new UserController();
 
-router
-  .route('/')
-  .get((req: Request, res: Response) => {
-    res.json([
-      { id: 1, name: 'David' },
-      { id: 2, name: 'Pedro' },
-    ]);
-  })
-  .post((req: Request, res: Response) => {
-    res.status(201).send('User inserted');
-  });
+router.route('/').get(userController.list).post(userController.insert);
 
 export default router;
