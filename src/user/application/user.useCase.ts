@@ -1,8 +1,8 @@
-import { UserModel } from '../domain/user.model';
-import { UserRepository } from './user.repository';
+import { BaseRepository } from '@shared/application/base.repository';
+import { UserModel } from '@user/domain/user.model';
 
 export class UserUseCase {
-  constructor(private operation: UserRepository) {}
+  constructor(private operation: BaseRepository<UserModel>) {}
 
   async list(): Promise<UserModel[]> {
     return await this.operation.list();

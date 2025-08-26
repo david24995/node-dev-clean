@@ -31,6 +31,11 @@
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
+    "baseUrl": ".",
+    "paths": {
+      "@user/*": ["./src/user/*"],
+      "@shared/*": ["./src/shared/*"]
+    },
 
     // Recommended Options
     "strict": true,

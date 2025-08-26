@@ -1,7 +1,7 @@
-import { UserRepository } from '../application/user.repository';
-import { UserModel } from '../domain/user.model';
+import { BaseRepository } from '@shared/application/base.repository';
+import { UserModel } from '@user/domain/user.model';
 
-export class UserOperation implements UserRepository {
+export class UserOperation implements BaseRepository<UserModel> {
   async getPage(page: number): Promise<UserModel[]> {
     return Promise.resolve([
       {
