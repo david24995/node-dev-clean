@@ -8,13 +8,38 @@ const userOperation: UserRepository = new UserOperation();
 const userUseCase = new UserUseCase(userOperation);
 
 export class UserController {
-  list(req: Request, res: Response) {
-    const users: UserModel[] = userUseCase.list();
+  async list(req: Request, res: Response) {
+    const users: UserModel[] = await userUseCase.list();
 
     res.json(users);
   }
 
-  insert(req: Request, res: Response) {
+  async getOne(req: Request, res: Response) {
+    const user: UserModel = await userUseCase.getOne(1);
+
+    res.json(user);
+  }
+
+  async update(req: Request, res: Response) {
+    const user: Partial<UserModel> = {
+      photo: 'andrea2.jpg',
+    };
+
+    const result: UserModel = await userUseCase.update(1, user);
+    res.json(result);
+  }
+
+  async delete(req: Request, res: Response) {
+    const result: UserModel = await userUseCase.delete(1);
+    res.json(result);
+  }
+
+  async getPage(req: Request, res: Response) {
+    const result: UserModel[] = await userUseCase.getPage(1);
+    res.json(result);
+  }
+
+  async insert(req: Request, res: Response) {
     const user: Partial<UserModel> = {
       name: 'Andrea',
       email: ' correo03@correo.com',
@@ -22,7 +47,7 @@ export class UserController {
       roles: ['MEDIC'],
       photo: 'andrea.jpg',
     };
-    const newUser: UserModel = userUseCase.insert(user);
+    const newUser: UserModel = await userUseCase.insert(user);
     res.json(newUser);
   }
 }
