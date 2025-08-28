@@ -3,13 +3,14 @@ import { UserUseCase } from '../application/user.useCase';
 import { UserModel } from '../domain/user.model';
 import { UserOperation } from '../infrastructure/user.operation';
 import { UserRepository } from '../application/user.repository';
+import { ResultRepository } from '@shared/application/result.repository';
 
 const userOperation: UserRepository = new UserOperation();
 const userUseCase = new UserUseCase(userOperation);
 
 export class UserController {
   async list(req: Request, res: Response) {
-    const users: UserModel[] = await userUseCase.list();
+    const users: ResultRepository<UserModel> = await userUseCase.list();
 
     res.json(users);
   }

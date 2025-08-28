@@ -1,10 +1,4 @@
+import { BaseRepository } from '@shared/application/base.repository';
 import { UserModel } from '../domain/user.model';
 
-export interface UserRepository {
-  list(): Promise<UserModel[]>;
-  getOne(id: number): Promise<UserModel>;
-  getPage(page: number): Promise<UserModel[]>;
-  insert(user: Partial<UserModel>): Promise<UserModel>;
-  update(id: number, user: Partial<UserModel>): Promise<UserModel>;
-  delete(id: number): Promise<UserModel>;
-}
+export interface UserRepository extends BaseRepository<UserModel> {}
