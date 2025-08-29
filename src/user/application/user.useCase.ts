@@ -2,15 +2,25 @@ import { UserModel } from '@user/domain/user.model';
 import { UserRepository } from '@user/application/user.repository';
 import { UserService } from '@user/application/user.service';
 import { ResponseDto } from '@shared/helpers/response.dto';
-import { ResultRepository } from '@shared/application/result.repository';
+import {
+  ResultRepository,
+  TraceOptions,
+} from '@shared/application/result.repository';
+import { generateTrace } from '@shared/helpers/trace';
 
 export class UserUseCase {
   constructor(private operation: UserRepository) {}
 
   async list(): Promise<ResultRepository<UserModel>> {
+    const traceId: string = generateTrace();
     const result = await this.operation.list();
+    const trace: TraceOptions = {
+      id: traceId,
+      channelId: 1,
+      name: 'List - UserUseCase',
+    };
 
-    return ResponseDto.format<UserModel>('345234', result);
+    return ResponseDto.format<UserModel>(trace, result);
   }
   async insert(user: Partial<UserModel>): Promise<UserModel> {
     const newUser = { ...user };
