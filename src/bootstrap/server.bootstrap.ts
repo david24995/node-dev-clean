@@ -1,6 +1,5 @@
 import { Application } from 'express';
-import { IServerBootstrap } from './server.interface';
-import { ServerAbstract } from './server.abstract';
+import { ServerAbstract } from '@bootstrap/server.abstract';
 
 // export class ServerBootstrap implements IServerBootstrap {
 export class ServerBootstrap extends ServerAbstract {

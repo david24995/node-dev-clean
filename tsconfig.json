@@ -34,6 +34,9 @@
     "baseUrl": ".",
     "paths": {
       "@user/*": ["./src/user/*"],
+      "@bootstrap/*": ["./src/bootstrap/*"],
+      "@medic/*": ["./src/medic/*"],
+      "@role/*": ["./src/role/*"],
       "@shared/*": ["./src/shared/*"]
     },
 

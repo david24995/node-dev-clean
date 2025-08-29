@@ -6,7 +6,7 @@
   },
   "ignore": ["node_modules", "dist", "reports", ".git", "coverage"],
   "execMap": {
-    "ts": "ts-node"
+    "ts": "ts-node -r tsconfig-paths/register"
   },
   "verbose": true
 }

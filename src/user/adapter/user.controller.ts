@@ -1,22 +1,23 @@
 import { Request, Response } from 'express';
-import { UserUseCase } from '../application/user.useCase';
-import { UserModel } from '../domain/user.model';
-import { UserOperation } from '../infrastructure/user.operation';
-import { UserRepository } from '../application/user.repository';
+import { UserUseCase } from '@user/application/user.useCase';
+import { UserModel } from '@user/domain/user.model';
+import { UserOperation } from '@user/infrastructure/user.operation';
+import { UserRepository } from '@user/application/user.repository';
 import { ResultRepository } from '@shared/application/result.repository';
+import { UserResponseDto } from '@user/application/user.dto';
 
 const userOperation: UserRepository = new UserOperation();
 const userUseCase = new UserUseCase(userOperation);
 
 export class UserController {
   async list(req: Request, res: Response) {
-    const users: ResultRepository<UserModel> = await userUseCase.list();
+    const users: ResultRepository<UserResponseDto> = await userUseCase.list();
 
     res.json(users);
   }
 
   async getOne(req: Request, res: Response) {
-    const user: UserModel = await userUseCase.getOne(1);
+    const user: ResultRepository<UserResponseDto> = await userUseCase.getOne(1);
 
     res.json(user);
   }
@@ -26,17 +27,24 @@ export class UserController {
       photo: 'andrea2.jpg',
     };
 
-    const result: UserModel = await userUseCase.update(1, user);
+    const result: ResultRepository<UserResponseDto> = await userUseCase.update(
+      1,
+      user
+    );
     res.json(result);
   }
 
   async delete(req: Request, res: Response) {
-    const result: UserModel = await userUseCase.delete(1);
+    const result: ResultRepository<UserResponseDto> = await userUseCase.delete(
+      1
+    );
     res.json(result);
   }
 
   async getPage(req: Request, res: Response) {
-    const result: UserModel[] = await userUseCase.getPage(1);
+    const result: ResultRepository<UserResponseDto> = await userUseCase.getPage(
+      1
+    );
     res.json(result);
   }
 
@@ -45,10 +53,12 @@ export class UserController {
       name: 'Andrea',
       email: ' correo03@correo.com',
       password: '123',
-      roles: ['MEDIC'],
+      roles: [{ id: 1, name: 'OPERATOR' }],
       photo: 'andrea.jpg',
     };
-    const newUser: UserModel = await userUseCase.insert(user);
+    const newUser: ResultRepository<UserResponseDto> = await userUseCase.insert(
+      user
+    );
     res.json(newUser);
   }
 }

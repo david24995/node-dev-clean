@@ -10,7 +10,7 @@ export class UserOperation implements BaseRepository<UserModel> {
         email: 'test@test.com',
         password: '123',
         photo: '1.jpeg',
-        roles: ['OPERATOR'],
+        roles: [{ id: 1, name: 'OPERATOR' }],
       },
     ]);
   }
@@ -21,7 +21,7 @@ export class UserOperation implements BaseRepository<UserModel> {
       email: 'test@test.com',
       password: '123',
       photo: '1.jpeg',
-      roles: ['OPERATOR'],
+      roles: [{ id: 1, name: 'OPERATOR' }],
     });
   }
   async update(id: number, user: Partial<UserModel>): Promise<UserModel> {
@@ -31,7 +31,7 @@ export class UserOperation implements BaseRepository<UserModel> {
       email: 'test@test.com',
       password: '123',
       photo: '1.jpeg',
-      roles: ['OPERATOR'],
+      roles: [{ id: 1, name: 'OPERATOR' }],
     });
   }
   async delete(id: number): Promise<UserModel> {
@@ -41,7 +41,7 @@ export class UserOperation implements BaseRepository<UserModel> {
       email: 'test@test.com',
       password: '123',
       photo: '1.jpeg',
-      roles: ['OPERATOR'],
+      roles: [{ id: 1, name: 'OPERATOR' }],
     });
   }
   async list(): Promise<UserModel[]> {
@@ -52,7 +52,7 @@ export class UserOperation implements BaseRepository<UserModel> {
         email: 'test@test.com',
         password: '123',
         photo: '1.jpeg',
-        roles: ['OPERATOR'],
+        roles: [{ id: 1, name: 'OPERATOR' }],
       },
     ]);
   }

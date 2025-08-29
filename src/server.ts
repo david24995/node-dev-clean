@@ -1,5 +1,5 @@
 import { app } from './app';
-import { ServerBootstrap } from './bootstrap/server.bootstrap';
+import { ServerBootstrap } from '@bootstrap/server.bootstrap';
 
 (async () => {
   try {
