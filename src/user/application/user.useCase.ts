@@ -1,16 +1,12 @@
 import { UserModel } from '@user/domain/user.model';
-<<<<<<< HEAD
-import { UserRepository } from '@user/application/user.repository';
-import { UserService } from '@user/application/user.service';
-import { ResponseDto } from '@shared/helpers/response.dto';
+import { UserRepository } from './user.repository';
+import { generateTrace } from '@shared/helpers/trace';
 import {
   ResultRepository,
   TraceOptions,
 } from '@shared/application/result.repository';
-import { generateTrace } from '@shared/helpers/trace';
-=======
-import { UserRepository } from './user.repository';
->>>>>>> cde2669 (Avanzando la clases 3 - User Service)
+import { ResponseDto } from '@shared/helpers/response.dto';
+import { UserService } from './user.service';
 
 export class UserUseCase {
   constructor(private operation: UserRepository) {}
