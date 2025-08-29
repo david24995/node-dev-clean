@@ -1,4 +1,5 @@
 import { UserModel } from '@user/domain/user.model';
+<<<<<<< HEAD
 import { UserRepository } from '@user/application/user.repository';
 import { UserService } from '@user/application/user.service';
 import { ResponseDto } from '@shared/helpers/response.dto';
@@ -7,6 +8,9 @@ import {
   TraceOptions,
 } from '@shared/application/result.repository';
 import { generateTrace } from '@shared/helpers/trace';
+=======
+import { UserRepository } from './user.repository';
+>>>>>>> cde2669 (Avanzando la clases 3 - User Service)
 
 export class UserUseCase {
   constructor(private operation: UserRepository) {}

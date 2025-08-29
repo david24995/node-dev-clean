@@ -3,9 +3,9 @@ export class UserService {
     return Promise.resolve(password);
   }
 
-  static validatePasswordCrypt(
+  static validatePassword(
     password: string,
-    cryptPassword: string
+    cryptPasswordCrypt: string
   ): Promise<boolean> {
     return Promise.resolve(true);
   }
