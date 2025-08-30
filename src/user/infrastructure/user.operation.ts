@@ -1,7 +1,10 @@
 import { BaseRepository } from '@shared/application/base.repository';
+import { UserRequestDto } from '@user/application/user.dto';
 import { UserModel } from '@user/domain/user.model';
 
-export class UserOperation implements BaseRepository<UserModel> {
+export class UserOperation
+  implements BaseRepository<UserModel, UserRequestDto>
+{
   async getPage(page: number): Promise<UserModel[]> {
     return Promise.resolve([
       {
@@ -56,7 +59,14 @@ export class UserOperation implements BaseRepository<UserModel> {
       },
     ]);
   }
-  async insert(user: Partial<UserModel>): Promise<UserModel> {
-    return Promise.resolve({ id: 2, ...user } as UserModel);
+  async insert(user: Partial<UserRequestDto>): Promise<UserModel> {
+    return Promise.resolve({
+      id: 1,
+      name: 'David',
+      email: 'test@test.com',
+      password: '123',
+      photo: '1.jpeg',
+      roles: [{ id: 1, name: 'OPERATOR' }],
+    });
   }
 }

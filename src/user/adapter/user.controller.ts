@@ -4,7 +4,7 @@ import { UserModel } from '@user/domain/user.model';
 import { UserOperation } from '@user/infrastructure/user.operation';
 import { UserRepository } from '@user/application/user.repository';
 import { ResultRepository } from '@shared/application/result.repository';
-import { UserResponseDto } from '@user/application/user.dto';
+import { UserRequestDto, UserResponseDto } from '@user/application/user.dto';
 
 const userOperation: UserRepository = new UserOperation();
 const userUseCase = new UserUseCase(userOperation);
@@ -49,11 +49,11 @@ export class UserController {
   }
 
   async insert(req: Request, res: Response) {
-    const user: Partial<UserModel> = {
+    const user: Partial<UserRequestDto> = {
       name: 'Andrea',
       email: ' correo03@correo.com',
       password: '123',
-      roles: [{ id: 1, name: 'OPERATOR' }],
+      roles: [1, 2],
       photo: 'andrea.jpg',
     };
     const newUser: ResultRepository<UserResponseDto> = await userUseCase.insert(

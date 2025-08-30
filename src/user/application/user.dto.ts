@@ -4,7 +4,7 @@ export interface UserResponseDto {
   id: number;
   name: string;
   email: string;
-  roles: any[];
+  roles: string[];
   photo: string;
 }
 
@@ -15,11 +15,12 @@ export const mappingUserDto = (
   if (isArray) {
     const newUserResponse: UserResponseDto[] = data.map((user) => {
       const { id, name, email, roles, photo } = user;
+
       return {
         id,
         name,
         email,
-        roles,
+        roles: roles.map((rol) => rol.name),
         photo,
       };
     });
@@ -32,7 +33,16 @@ export const mappingUserDto = (
     id,
     name,
     email,
-    roles,
+    roles: roles.map((rol) => rol.name),
     photo,
   };
 };
+
+export interface UserRequestDto {
+  id: number;
+  name: string;
+  password: string;
+  email: string;
+  roles: number[];
+  photo: string;
+}

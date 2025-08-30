@@ -24,3 +24,9 @@ export const mappingMedicDto = (
     identifier: data.identifier,
   };
 };
+
+export interface MedicRequestDto {
+  id: number;
+  fullName: string;
+  identifier: string;
+}

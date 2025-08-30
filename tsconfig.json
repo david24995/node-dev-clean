@@ -37,6 +37,7 @@
       "@bootstrap/*": ["./src/bootstrap/*"],
       "@medic/*": ["./src/medic/*"],
       "@role/*": ["./src/role/*"],
+      "@driver/*": ["./src/driver/*"],
       "@shared/*": ["./src/shared/*"]
     },
 

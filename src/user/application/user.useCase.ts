@@ -7,7 +7,11 @@ import {
 } from '@shared/application/result.repository';
 import { ResponseDto } from '@shared/helpers/response.dto';
 import { UserService } from '@user/application/user.service';
-import { mappingUserDto, UserResponseDto } from '@user/application/user.dto';
+import {
+  mappingUserDto,
+  UserRequestDto,
+  UserResponseDto,
+} from '@user/application/user.dto';
 
 export class UserUseCase {
   constructor(private operation: UserRepository) {}
@@ -26,7 +30,7 @@ export class UserUseCase {
     return ResponseDto.format<UserResponseDto>(trace, resultMapped);
   }
   async insert(
-    user: Partial<UserModel>
+    user: Partial<UserRequestDto>
   ): Promise<ResultRepository<UserResponseDto>> {
     const traceId: string = generateTrace();
     const trace: TraceOptions = {
@@ -40,7 +44,7 @@ export class UserUseCase {
       String(newUser.password)
     );
 
-    const userCreated = await this.operation.insert(newUser as UserModel);
+    const userCreated = await this.operation.insert(newUser);
 
     const resultMapped = mappingUserDto(userCreated);
 
@@ -90,7 +94,9 @@ export class UserUseCase {
 
     const userDeleted = await this.operation.delete(id);
 
-    return ResponseDto.format<UserResponseDto>(trace, userDeleted);
+    const resultMapped = mappingUserDto(userDeleted);
+
+    return ResponseDto.format<UserResponseDto>(trace, resultMapped);
   }
 
   async getPage(page: number): Promise<ResultRepository<UserResponseDto>> {
